@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Simulador de Catálogo — Segmentos x Planos</title>
+<style>
+  :root{
+    --bg: #fafaf9;
+    --ink: #1c2a2e;
+    --muted: #6b7a7d;
+    --teal: #0f8b8d;
+    --teal-dark: #0b6668;
+    --green-bg: #eaf4ee;
+    --standard: #c7d3da;
+    --standard-strong: #9fb0ba;
+    --premium: #55636b;
+    --premium-strong: #3c464c;
+    --jornais: #cfe3f5;
+    --jornais-strong: #a9cceb;
+    --card: #ffffff;
+    --line: #e4e2dd;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 32px 24px 60px;
+  }
+  .wrap{max-width: 1080px; margin: 0 auto;}
+  h1{
+    font-size: 22px;
+    letter-spacing: 0.2px;
+    margin: 0 0 4px;
+    color: var(--teal-dark);
+  }
+  .subtitle{
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0 0 24px;
+  }
+  .layout{
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(280px, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+  @media (max-width: 900px){
+    .layout{ grid-template-columns: 1fr; }
+  }
+
+  .table-card{
+    background: var(--card);
+    border-radius: 14px;
+    padding: 18px 18px 10px;
+    box-shadow: 0 1px 3px rgba(20,30,30,0.06), 0 8px 24px rgba(20,30,30,0.04);
+    overflow-x: auto;
+  }
+  table{
+    border-collapse: separate;
+    border-spacing: 6px;
+    width: 100%;
+    min-width: 560px;
+  }
+  th{
+    font-style: italic;
+    font-weight: 600;
+    font-size: 13.5px;
+    padding: 10px 6px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  th.seg-head{
+    background: transparent;
+    color: var(--teal-dark);
+    font-style: normal;
+    font-weight: 700;
+    text-align: left;
+    cursor: default;
+  }
+  th.plan-light{ background: #eeeeec; color:#4a4a48; }
+  th.plan-standard{ background: var(--standard); color:#2c363c; }
+  th.plan-premium{ background: var(--premium); color:#fff; }
+  th.plan-jornais{ background: var(--jornais); color:#20415c; }
+
+  td{ padding: 0; }
+  td.seg-label{
+    background: var(--green-bg);
+    color: #1f3d33;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 11px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+  .cell{
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.06s ease, filter 0.15s ease;
+  }
+  .cell:active{ transform: scale(0.96); }
+  .cell.light{ background: #f4f4f2; }
+  .cell.standard{ background: #dbe4e9; }
+  .cell.premium{ background: #e4e7e9; }
+  .cell.jornais{ background: #e6f0fa; }
+  .cell.checked.light{ background: #bfbfba; }
+  .cell.checked.standard{ background: var(--standard-strong); }
+  .cell.checked.premium{ background: var(--premium-strong); }
+  .cell.checked.jornais{ background: var(--jornais-strong); }
+
+  .check-mark{
+    width: 15px; height: 15px;
+    border-radius: 4px;
+    border: 2px solid rgba(0,0,0,0.18);
+    background: rgba(255,255,255,0.6);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .cell.checked .check-mark{ background: var(--teal); border-color: var(--teal); }
+  .cell.checked .check-mark::after{
+    content: "";
+    width: 5px; height: 9px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(40deg) translate(-1px,-1px);
+  }
+
+  .actions{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    margin-top: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .count-pill{ font-size: 13px; color: var(--muted); }
+  button{
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 999px;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: filter 0.15s ease, transform 0.06s ease;
+  }
+  button:active{ transform: scale(0.98); }
+  #clearBtn{ background: transparent; color: var(--muted); border: 1px solid var(--line); }
+  #clearBtn:hover{ background: #f2f2f0; }
+
+  /* --- Painel ao vivo da oferta atual --- */
+  .live-card{
+    background: var(--card);
+    border-radius: 14px;
+    padding: 20px 20px 18px;
+    box-shadow: 0 1px 3px rgba(20,30,30,0.06), 0 8px 24px rgba(20,30,30,0.04);
+    border: 2px dashed var(--teal);
+    position: sticky;
+    top: 20px;
+  }
+  .live-card .tag{
+    display:inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    background: var(--green-bg);
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .live-card h2{
+    margin: 0 0 10px;
+    font-size: 19px;
+    color: var(--teal-dark);
+  }
+  .live-empty{
+    color: var(--muted);
+    font-size: 13.5px;
+    font-style: italic;
+  }
+  .live-plan-group{
+    margin-bottom: 10px;
+  }
+  .live-plan-group .plabel{
+    font-size: 12px;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+  .live-plan-group ul{
+    margin: 0;
+    padding-left: 16px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .lbl-light{ color:#6a6a66; }
+  .lbl-standard{ color:#4b5c65; }
+  .lbl-premium{ color:#3c464c; }
+  .lbl-jornais{ color:#20415c; }
+
+  .save-offer-btn{
+    width: 100%;
+    background: var(--teal);
+    color: #fff;
+    margin-top: 12px;
+  }
+  .save-offer-btn:hover{ filter: brightness(1.06); }
+  .save-offer-btn:disabled{ background: #cfd6d5; cursor: not-allowed; }
+
+  /* --- Ofertas salvas --- */
+  #savedOffers{ margin-top: 22px; }
+  .offer-card{
+    background: var(--card);
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 3px rgba(20,30,30,0.06), 0 8px 24px rgba(20,30,30,0.04);
+    margin-bottom: 14px;
+  }
+  .offer-card-head{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .offer-card-head h3{
+    margin:0;
+    font-size: 16px;
+    color: var(--teal-dark);
+  }
+  .remove-offer{
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  .remove-offer:hover{ background: #fbeceb; color:#b23b34; border-color:#f0c9c6; }
+
+  #generateBtn{ background: var(--teal-dark); color:#fff; }
+  #generateBtn:hover{ filter: brightness(1.08); }
+
+  #summary{
+    margin-top: 22px;
+    background: var(--card);
+    border-radius: 14px;
+    padding: 24px 26px;
+    box-shadow: 0 1px 3px rgba(20,30,30,0.06), 0 8px 24px rgba(20,30,30,0.04);
+    display: none;
+    white-space: pre-wrap;
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+  #summary.show{ display:block; }
+  #summary h2{ margin: 0 0 12px; font-size: 18px; color: var(--teal-dark); white-space: normal; }
+
+  .copy-row{ margin-top: 16px; display:flex; justify-content: flex-end; }
+  #copyBtn{
+    background: transparent;
+    color: var(--teal-dark);
+    border: 1px solid var(--teal);
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+  #copyBtn:hover{ background: var(--green-bg); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Simulador de Catálogo</h1>
+  <p class="subtitle">Marque os segmentos por plano. Sua seleção vira a <strong>Oferta 1</strong> em tempo real. Quando terminar essa oferta, salve e comece a próxima.</p>
+
+  <div class="layout">
+    <div>
+      <div class="table-card">
+        <table id="matrix">
+          <thead>
+            <tr>
+              <th class="seg-head">Segmentos</th>
+              <th class="plan-light" data-plan="light">Light</th>
+              <th class="plan-standard" data-plan="standard">Standard</th>
+              <th class="plan-premium" data-plan="premium">Premium</th>
+              <th class="plan-jornais" data-plan="jornais">Jornais e revistas</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="actions">
+        <span class="count-pill" id="countPill">0 seleções marcadas</span>
+        <button id="clearBtn">Limpar seleção atual</button>
+      </div>
+
+      <div id="savedOffers"></div>
+    </div>
+
+    <div class="live-card">
+      <span class="tag" id="liveTag">ao vivo</span>
+      <h2 id="liveTitle">Oferta 1</h2>
+      <div id="liveBody"><p class="live-empty">Marque células na tabela para começar a montar esta oferta.</p></div>
+      <button class="save-offer-btn" id="saveOfferBtn" disabled>Salvar Oferta 1 e iniciar próxima</button>
+    </div>
+  </div>
+
+  <div style="margin-top:20px; display:flex; justify-content:flex-end;">
+    <button id="generateBtn">Gerar resumo completo</button>
+  </div>
+
+  <div id="summary">
+    <h2>Resumo completo do catálogo</h2>
+    <div id="summaryText"></div>
+    <div class="copy-row">
+      <button id="copyBtn">Copiar resumo como texto</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const segmentos = [
+    "Business", "Kids", "Esportes", "Wellness", "Economia e Política",
+    "Entretenimento", "Atualidades", "Tecnologia", "Vestibular",
+    "Moda e beleza", "Automobilismo", "Concurso"
+  ];
+  const planos = [
+    { key: "light", label: "Light", cls: "lbl-light" },
+    { key: "standard", label: "Standard", cls: "lbl-standard" },
+    { key: "premium", label: "Premium", cls: "lbl-premium" },
+    { key: "jornais", label: "Jornais e revistas", cls: "lbl-jornais" }
+  ];
+
+  // estado da seleção ATUAL (ainda não salva)
+  let current = {};
+  segmentos.forEach(seg => { current[seg] = {}; planos.forEach(p => current[seg][p.key] = false); });
+
+  // ofertas já salvas
+  const savedOffersList = []; // { number, data: {seg: {plan: bool}} }
+  let offerCounter = 1;
+
+  const tbody = document.getElementById('tbody');
+
+  segmentos.forEach(seg => {
+    const tr = document.createElement('tr');
+    const tdLabel = document.createElement('td');
+    tdLabel.className = 'seg-label';
+    tdLabel.textContent = seg;
+    tr.appendChild(tdLabel);
+
+    planos.forEach(p => {
+      const td = document.createElement('td');
+      const cell = document.createElement('div');
+      cell.className = `cell ${p.key}`;
+      cell.dataset.seg = seg;
+      cell.dataset.plan = p.key;
+      const mark = document.createElement('div');
+      mark.className = 'check-mark';
+      cell.appendChild(mark);
+      cell.addEventListener('click', () => {
+        current[seg][p.key] = !current[seg][p.key];
+        cell.classList.toggle('checked', current[seg][p.key]);
+        refreshLive();
+      });
+      td.appendChild(cell);
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+
+  document.querySelectorAll('th[data-plan]').forEach(th => {
+    th.addEventListener('click', () => {
+      const plan = th.dataset.plan;
+      const allChecked = segmentos.every(seg => current[seg][plan]);
+      const newVal = !allChecked;
+      segmentos.forEach(seg => current[seg][plan] = newVal);
+      document.querySelectorAll(`.cell[data-plan="${plan}"]`).forEach(cell => {
+        cell.classList.toggle('checked', newVal);
+      });
+      refreshLive();
+    });
+  });
+
+  function countCurrent(){
+    let total = 0;
+    segmentos.forEach(seg => planos.forEach(p => { if(current[seg][p.key]) total++; }));
+    return total;
+  }
+
+  function refreshLive(){
+    const total = countCurrent();
+    document.getElementById('countPill').textContent = `${total} seleç${total===1?'ão marcada':'ões marcadas'} na oferta atual`;
+    document.getElementById('liveTitle').textContent = `Oferta ${offerCounter}`;
+
+    const body = document.getElementById('liveBody');
+    body.innerHTML = '';
+
+    if(total === 0){
+      body.innerHTML = '<p class="live-empty">Marque células na tabela para começar a montar esta oferta.</p>';
+      document.getElementById('saveOfferBtn').disabled = true;
+    } else {
+      planos.forEach(p => {
+        const segs = segmentos.filter(seg => current[seg][p.key]);
+        if(segs.length === 0) return;
+        const group = document.createElement('div');
+        group.className = 'live-plan-group';
+        const label = document.createElement('div');
+        label.className = `plabel ${p.cls}`;
+        label.textContent = `${p.label} (${segs.length})`;
+        group.appendChild(label);
+        const ul = document.createElement('ul');
+        segs.forEach(seg => {
+          const li = document.createElement('li');
+          li.textContent = seg;
+          ul.appendChild(li);
+        });
+        group.appendChild(ul);
+        body.appendChild(group);
+      });
+      document.getElementById('saveOfferBtn').disabled = false;
+    }
+    document.getElementById('saveOfferBtn').textContent = `Salvar Oferta ${offerCounter} e iniciar próxima`;
+  }
+
+  document.getElementById('clearBtn').addEventListener('click', () => {
+    segmentos.forEach(seg => planos.forEach(p => current[seg][p.key] = false));
+    document.querySelectorAll('.cell').forEach(c => c.classList.remove('checked'));
+    refreshLive();
+  });
+
+  document.getElementById('saveOfferBtn').addEventListener('click', () => {
+    // snapshot da seleção atual
+    const snapshot = {};
+    segmentos.forEach(seg => { snapshot[seg] = { ...current[seg] }; });
+    savedOffersList.push({ number: offerCounter, data: snapshot });
+    renderSavedOffers();
+
+    // reset para a próxima oferta
+    offerCounter++;
+    segmentos.forEach(seg => planos.forEach(p => current[seg][p.key] = false));
+    document.querySelectorAll('.cell').forEach(c => c.classList.remove('checked'));
+    refreshLive();
+  });
+
+  function renderSavedOffers(){
+    const container = document.getElementById('savedOffers');
+    container.innerHTML = '';
+    savedOffersList.forEach((offer, idx) => {
+      const card = document.createElement('div');
+      card.className = 'offer-card';
+
+      const head = document.createElement('div');
+      head.className = 'offer-card-head';
+      const h3 = document.createElement('h3');
+      h3.textContent = `Oferta ${offer.number}`;
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'remove-offer';
+      removeBtn.textContent = 'Remover';
+      removeBtn.addEventListener('click', () => {
+        savedOffersList.splice(idx, 1);
+        renderSavedOffers();
+      });
+      head.appendChild(h3);
+      head.appendChild(removeBtn);
+      card.appendChild(head);
+
+      planos.forEach(p => {
+        const segs = segmentos.filter(seg => offer.data[seg][p.key]);
+        if(segs.length === 0) return;
+        const group = document.createElement('div');
+        group.className = 'live-plan-group';
+        const label = document.createElement('div');
+        label.className = `plabel ${p.cls}`;
+        label.textContent = `${p.label} (${segs.length})`;
+        group.appendChild(label);
+        const ul = document.createElement('ul');
+        segs.forEach(seg => {
+          const li = document.createElement('li');
+          li.textContent = seg;
+          ul.appendChild(li);
+        });
+        group.appendChild(ul);
+        card.appendChild(group);
+      });
+
+      container.appendChild(card);
+    });
+  }
+
+  function buildFullSummaryText(){
+    let text = '';
+    const allOffers = [...savedOffersList];
+    if(countCurrent() > 0){
+      const snapshot = {};
+      segmentos.forEach(seg => { snapshot[seg] = { ...current[seg] }; });
+      allOffers.push({ number: offerCounter, data: snapshot, live: true });
+    }
+
+    if(allOffers.length === 0){
+      return 'Nenhuma oferta foi montada ainda.';
+    }
+
+    allOffers.forEach(offer => {
+      text += `OFERTA ${offer.number}${offer.live ? ' (em andamento)' : ''}\n`;
+      let any = false;
+      planos.forEach(p => {
+        const segs = segmentos.filter(seg => offer.data[seg][p.key]);
+        if(segs.length === 0) return;
+        any = true;
+        text += `  ${p.label}:\n`;
+        segs.forEach(seg => text += `    - ${seg}\n`);
+      });
+      if(!any) text += '  (sem segmentos marcados)\n';
+      text += '\n';
+    });
+    return text.trim();
+  }
+
+  document.getElementById('generateBtn').addEventListener('click', () => {
+    const summaryDiv = document.getElementById('summary');
+    document.getElementById('summaryText').textContent = buildFullSummaryText();
+    summaryDiv.classList.add('show');
+    summaryDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    navigator.clipboard.writeText(buildFullSummaryText()).then(() => {
+      const btn = document.getElementById('copyBtn');
+      const original = btn.textContent;
+      btn.textContent = 'Copiado!';
+      setTimeout(() => btn.textContent = original, 1500);
+    });
+  });
+
+  refreshLive();
+</script>
+</body>
+</html>
