@@ -60,12 +60,22 @@
     background:#fff; border:1px solid var(--line); border-radius: 18px;
     padding: 20px; overflow-x:auto;
   }
-  #tab-conteudo table{ border-collapse:separate; border-spacing:6px; width:100%; min-width:560px; }
+  #tab-conteudo table{ border-collapse:separate; border-spacing:6px; width:100%; min-width:920px; }
   #tab-conteudo th{
     font-family:'Space Grotesk', sans-serif; font-style:normal; font-weight:700; font-size:13.5px;
     padding:10px 6px; border-radius:10px; text-align:center; cursor:pointer; user-select:none;
   }
   #tab-conteudo th.seg-head{ background:none; color: var(--teal); text-align:left; cursor:default; }
+  #tab-conteudo th.content-head{ background:none; color: var(--teal); text-align:left; cursor:default; font-style:normal; }
+  #tab-conteudo td.content-cell{
+    background: #fbfbf9; border: 1px solid var(--line); border-radius:10px;
+    padding: 12px 14px; font-size:11.5px; line-height:1.5; color: var(--ink);
+    width: 300px; min-width: 300px; max-width: 300px;
+    height: 150px; overflow-y: auto; vertical-align: top;
+  }
+  #tab-conteudo .content-line{ margin-bottom:5px; }
+  #tab-conteudo .content-line:last-child{ margin-bottom:0; }
+  #tab-conteudo .content-line strong{ color: var(--teal); font-weight:700; }
   #tab-conteudo th.plan-light{ background:#eeeeec; color:#4a4a48; }
   #tab-conteudo th.plan-standard{ background:#c7d3da; color:#2c363c; }
   #tab-conteudo th.plan-premium{ background:#55636b; color:#fff; }
@@ -74,10 +84,12 @@
   #tab-conteudo td{ padding:0; }
   #tab-conteudo td.seg-label{
     background: var(--teal-soft); color:#1f3d33; font-style:italic; font-size:13px; font-weight:600;
-    padding: 11px 12px; border-radius:10px; white-space:nowrap;
+    padding: 11px 12px; border-radius:10px;
+    width: 190px; min-width: 190px; max-width: 190px;
+    height: 150px; display:flex; align-items:center; white-space:normal;
   }
   #tab-conteudo .cell{
-    height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    width: 100%; height: 150px; min-width: 130px; border-radius:10px; display:flex; align-items:center; justify-content:center;
     cursor:pointer; transition: transform .06s ease, filter .15s ease;
   }
   #tab-conteudo .cell:active{ transform: scale(.96); }
@@ -179,7 +191,7 @@
   #tab-protecao .table-card{
     background:#fff; border:1px solid var(--line); border-radius:18px; padding:22px; overflow-x:auto;
   }
-  #tab-protecao table{ border-collapse:separate; border-spacing:0 8px; width:100%; min-width:640px; }
+  #tab-protecao table{ border-collapse:separate; border-spacing:0 8px; width:100%; min-width:1120px; }
   #tab-protecao thead th{
     font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:14.5px; text-align:center;
     padding:12px 10px; border-radius:10px;
@@ -193,18 +205,28 @@
   #tab-protecao tbody td{ padding:6px 10px; vertical-align:middle; }
   #tab-protecao .row-label{
     background:#eef4ef; border-radius:10px; font-weight:700; font-size:13.5px; padding:16px 16px;
-    color: var(--ink); white-space:nowrap;
+    color: var(--ink); white-space:normal;
+    width: 170px; min-width:170px; max-width:170px;
+    height: 110px; display:flex; align-items:center;
   }
   #tab-protecao .pcell{
-    background:#f4f3ef; border-radius:10px; padding:12px 14px; display:flex; align-items:center;
-    justify-content:space-between; gap:10px; min-width:150px;
+    background:#f4f3ef; border-radius:10px; padding:12px 14px; display:flex; align-items:flex-start;
+    justify-content:space-between; gap:10px;
+    width: 230px; min-width:230px; max-width:230px;
+    height: 110px; overflow-y:auto;
   }
   #tab-protecao .pcell.col-light{ background:#f1efe9; }
   #tab-protecao .pcell.col-standard{ background:#dfe4ea; }
   #tab-protecao .pcell.col-premium{ background:#34424f; color:#fff; }
   #tab-protecao .pcell.col-padrao{ background:#e4ecf7; }
   #tab-protecao .pcell.disabled{ opacity:.45; }
+  #tab-protecao .pcell-main{ display:flex; flex-direction:column; gap:4px; }
   #tab-protecao .pcell-value{ font-size:13px; font-weight:500; }
+  #tab-protecao .pcell-detail{
+    font-size:11.5px; font-weight:400; line-height:1.4; opacity:.75;
+  }
+  #tab-protecao .pcell.col-premium .pcell-detail{ opacity:.85; }
+  #tab-protecao .pcell .pchk{ margin-top:2px; }
 
   #tab-protecao .pchk{
     appearance:none; width:20px; height:20px; border-radius:6px; border:2px solid rgba(0,0,0,.28);
@@ -226,6 +248,7 @@
   #tab-protecao .offer-items li:first-child{ border-top:none; }
   #tab-protecao .oi-name{ font-weight:600; }
   #tab-protecao .oi-plan{ color: var(--muted); font-size:12px; }
+  #tab-protecao .oi-detail{ color: var(--muted); font-size:11px; max-width:230px; line-height:1.4; margin-top:2px; }
   #tab-protecao .oi-val{ color: var(--teal); font-weight:600; white-space:nowrap; }
 
   #tab-protecao .saved-offers{ margin-top:28px; }
@@ -257,6 +280,7 @@
             <thead>
               <tr>
                 <th class="seg-head">Segmentos</th>
+                <th class="content-head">Conteúdo atual</th>
                 <th class="plan-light" data-plan="light">Light</th>
                 <th class="plan-standard" data-plan="standard">Standard</th>
                 <th class="plan-premium" data-plan="premium">Premium</th>
@@ -309,7 +333,7 @@
               <th class="col-light">Light</th>
               <th class="col-standard">Standard</th>
               <th class="col-premium">Premium</th>
-              <th class="col-padrao">Padrão</th>
+              <th class="col-padrao">Ativar</th>
             </tr>
           </thead>
           <tbody id="tbodyProtecao"></tbody>
@@ -361,10 +385,123 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
    ================================================================== */
 (function(){
   const segmentos = [
-    "Business", "Kids", "Esportes", "Wellness", "Economia e Política",
-    "Entretenimento", "Atualidades", "Tecnologia", "Vestibular",
-    "Moda e beleza", "Automobilismo", "Concurso"
+    "Executivo/ carreira e liderança",
+    "Empreendedorismo",
+    "Esportes",
+    "Automotivo",
+    "Wellness/ Saúde e Bem Estar",
+    "Atualidades (Brasil e Mundo)",
+    "Entretenimento",
+    "Vestibular e Concurso Público",
+    "Ciência e Tecnologia",
+    "Kids",
+    "Mundo Pop",
+    "Lifestyle"
   ];
+
+  const segmentoConteudo = {
+    "Executivo/ carreira e liderança": {
+      jornais: "Jornal do Commercio, Valor Econômico (Premium)",
+      revistas: "EXAME, Empresário Digital, LIDE, Le Monde Diplomatique, The Winners",
+      feeds: "Reuters (Economia e Internacional) e The New York Times",
+      ebooks: "Citadel e Buzz e/ou Gente (preços de capa maiores)",
+      apostilas: "Desenvolvimento pessoal, Tecnologia"
+    },
+    "Empreendedorismo": {
+      jornais: "Correio Braziliense, Estado de Minas",
+      revistas: "Veja Negócios, Sim, Você Pode!, Tudo Sobre Informática, revistas de Artesanato e DIY",
+      feeds: "EdiCase (Carreira & Negócios)",
+      ebooks: "Citadel",
+      apostilas: "Desenvolvimento pessoal, Idiomas (Inglês e Espanhol)"
+    },
+    "Esportes": {
+      jornais: "EXTRA",
+      revistas: "Sports365, Sport Life",
+      feeds: "Estadão Notícias",
+      ebooks: "Digitaliza (tem editoras de conteúdo esportivo no catálogo)",
+      apostilas: "Educação Física"
+    },
+    "Automotivo": {
+      jornais: "Estadão",
+      revistas: "AutoEsporte, Quatro Rodas, Cultura do Automóvel, Race1, Car Brasil",
+      feeds: "-",
+      ebooks: "Foco em catálogo diverso de audiobooks, com mote \"Para ler enquanto dirige\"",
+      apostilas: "-"
+    },
+    "Wellness/ Saúde e Bem Estar": {
+      jornais: "Gazeta de S. Paulo",
+      revistas: "Boa Forma, Veja Saúde, Viva Saúde, Vida Longa e Saudável, Ciência em Foco, Vegetarianos, etc",
+      feeds: "EdiCase (Saúde e Bem Estar; Pets), The New York Times (notícias sobre saúde)",
+      ebooks: "Pinçar das editoras parceiras generalistas os títulos de saúde",
+      apostilas: "Desenvolvimento pessoal, Educação física"
+    },
+    "Atualidades (Brasil e Mundo)": {
+      jornais: "Folha de São Paulo (TIM), O Povo (TIM + outros provedores)",
+      revistas: "Veja, Carta Capital, Manchete",
+      feeds: "Reuters (completo), Poder360",
+      ebooks: "Pinçar das editoras parceiras títulos de não ficção e atualidades",
+      apostilas: "-"
+    },
+    "Entretenimento": {
+      jornais: "Meia Hora, O Dia RJ",
+      revistas: "Caras, Contigo, Guia da TV, Malu",
+      feeds: "Quem",
+      ebooks: "Pinçar das editoras parceiras títulos de ficção (romances e suspense, principalmente)",
+      apostilas: "-"
+    },
+    "Vestibular e Concurso Público": {
+      jornais: "Folha de São Paulo (TIM); O Globo (TIM + outros provedores)",
+      revistas: "Guia do Estudante, Veja, Aventuras na História",
+      feeds: "Reuters (completo)",
+      ebooks: "Literatura brasileira, clássicos e livros de vestibular (Domínio Público e Global Editora)",
+      apostilas: "Ensino Médio, Pré-Vestibular; Concurso Público"
+    },
+    "Ciência e Tecnologia": {
+      jornais: "O Dia SP",
+      revistas: "Superinteressante, Galileu, Mente Afiada, Segredos da Mente, A verdade sobre",
+      feeds: "-",
+      ebooks: "Pinçar das editoras parceiras títulos de ciência, tecnologia e ficção especulativa (ficção científica, fantasia e terror)",
+      apostilas: "Tecnologia"
+    },
+    "Kids": {
+      jornais: "Correio do Estado",
+      revistas: "Recreio, Universo Bebê e Criança, Piadas para crianças",
+      feeds: "-",
+      ebooks: "Pinçar das editoras parceiras livros infantis, Universo dos Livros com licenciados Disney",
+      apostilas: "Ensino Fundamental"
+    },
+    "Mundo Pop": {
+      jornais: "Folha de Pernambuco",
+      revistas: "Almanaque21, PlayGames, Mega Drive Mania, Mundo dos Super Heróis (editora Europa)",
+      feeds: "-",
+      ebooks: "Pinçar das editoras parceiras livros de ficção especulativa (ficção científica, fantasia e terror) e adaptados para cinema/séries, quadrinhos",
+      apostilas: "-"
+    },
+    "Lifestyle": {
+      jornais: "O Globo",
+      revistas: "Vogue, Casa Vogue, Glamour, Capricho, Manequim, revistas de decoração, viagem e astrologia",
+      feeds: "EdiCase (Beleza, Turismo, Decoração, Culinária)",
+      ebooks: "Pinçar das editoras parceiras livros de ficção (romance, em especial) e biografias",
+      apostilas: "-"
+    }
+  };
+
+  const conteudoLabels = [
+    { key: "jornais", label: "Jornais" },
+    { key: "revistas", label: "Revistas" },
+    { key: "feeds", label: "Feeds" },
+    { key: "ebooks", label: "Ebooks e Audiobooks" },
+    { key: "apostilas", label: "Apostilas" }
+  ];
+
+  function renderConteudoHTML(seg){
+    const info = segmentoConteudo[seg];
+    if(!info) return '';
+    return conteudoLabels
+      .filter(c => info[c.key] && info[c.key] !== '-')
+      .map(c => `<div class="content-line"><strong>${c.label}:</strong> ${info[c.key]}</div>`)
+      .join('');
+  }
   const planos = [
     { key: "light", label: "Light", cls: "lbl-light" },
     { key: "standard", label: "Standard", cls: "lbl-standard" },
@@ -386,6 +523,11 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     tdLabel.className = 'seg-label';
     tdLabel.textContent = seg;
     tr.appendChild(tdLabel);
+
+    const tdContent = document.createElement('td');
+    tdContent.className = 'content-cell';
+    tdContent.innerHTML = renderConteudoHTML(seg);
+    tr.appendChild(tdContent);
 
     planos.forEach(p => {
       const td = document.createElement('td');
@@ -582,15 +724,25 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     { key:'light',    label:'Light' },
     { key:'standard', label:'Standard' },
     { key:'premium',  label:'Premium' },
-    { key:'padrao',   label:'Padrão' },
+    { key:'padrao',   label:'Ativar' },
   ];
 
   const ROWS = [
-    { label:'Segurança',        values:{ light:'1 licença', standard:'2 licenças', premium:'3 licenças', padrao:'-' } },
+    { label:'Segurança',        values:{ light:'1 licença', standard:'2 licenças', premium:'3 licenças', padrao:'-' },
+      details:{
+        light:'Antivirus, navegador seguro, QR code seguro, proteção de apps, darkweb monitor email',
+        standard:'Antivirus, navegador seguro, QR code seguro, proteção de apps, darkweb monitor email',
+        premium:'Antivirus, navegador seguro, QR code seguro, proteção de apps, darkweb monitor email'
+      } },
     { label:'Seguro transação', values:{ light:'R$500', standard:'R$300+R$300', premium:'R$500+R$500', padrao:'-' } },
-    { label:'Localizador',      values:{ light:'-', standard:'-', premium:'-', padrao:'Sim/Não' } },
-    { label:'Antigolpe',        values:{ light:'1 licença', standard:'2 licenças', premium:'3 licenças', padrao:'-' } },
-    { label:'VPN',              values:{ light:'-', standard:'-', premium:'-', padrao:'Sim/Não' } },
+    { label:'Localizador',      values:{ light:'-', standard:'-', premium:'-', padrao:'Sim' } },
+    { label:'Antigolpe',        values:{ light:'1 licença', standard:'2 licenças', premium:'3 licenças', padrao:'-' },
+      details:{
+        light:'Proteção de WhatsApp, Verificação de PIX',
+        standard:'Proteção de WhatsApp, Verificação de PIX, Detecção de IA — imagem, áudio e vídeo',
+        premium:'Proteção de WhatsApp, Verificação de PIX, Detecção de IA — imagem, áudio e vídeo, Dark Web Monitor (Email, CPF, Telefone, Passaporte)'
+      } },
+    { label:'VPN',              values:{ light:'-', standard:'-', premium:'-', padrao:'Sim' } },
   ];
 
   let offerCount = 1;
@@ -603,10 +755,14 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
         const val = row.values[col.key];
         const disabled = val === '-';
         const id = `pchk-${ri}-${col.key}`;
+        const detail = row.details && row.details[col.key];
         return `
           <td>
-            <div class="pcell col-${col.key} ${disabled?'disabled':''}">
-              <span class="pcell-value">${val}</span>
+            <div class="pcell col-${col.key} ${disabled?'disabled':''} ${detail?'has-detail':''}">
+              <div class="pcell-main">
+                <span class="pcell-value">${val}</span>
+                ${detail ? `<span class="pcell-detail">${detail}</span>` : ''}
+              </div>
               <input type="checkbox" class="pchk" id="${id}"
                 data-row="${ri}" data-plan="${col.key}"
                 ${disabled?'disabled':''}>
@@ -628,7 +784,8 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
       const planKey = chk.dataset.plan;
       const row = ROWS[ri];
       const planLabel = PLAN_COLS.find(c => c.key === planKey).label;
-      items.push({ feature: row.label, plan: planLabel, value: row.values[planKey] });
+      const detail = row.details && row.details[planKey] ? row.details[planKey] : '';
+      items.push({ feature: row.label, plan: planLabel, value: row.values[planKey], detail });
     });
     return items;
   }
@@ -650,6 +807,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
           <div>
             <div class="oi-name">${it.feature}</div>
             <div class="oi-plan">${it.plan}</div>
+            ${it.detail ? `<div class="oi-detail">${it.detail}</div>` : ''}
           </div>
           <div class="oi-val">${it.value}</div>
         </li>
@@ -685,7 +843,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
           <button class="remove-offer" data-idx="${idx}">Remover</button>
         </div>
         <ul style="margin:0; padding-left:18px; font-size:13px;">
-          ${offer.items.map(it => `<li>${it.feature} — ${it.plan}: ${it.value}</li>`).join('')}
+          ${offer.items.map(it => `<li>${it.feature} — ${it.plan}: ${it.value}${it.detail ? `<br><span style="color:var(--muted); font-size:11.5px;">${it.detail}</span>` : ''}</li>`).join('')}
         </ul>
       </div>
     `).join('');
@@ -714,6 +872,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
       text += `OFERTA ${offer.number}${offer.live ? ' (em andamento)' : ''}\n`;
       offer.items.forEach(it => {
         text += `  - ${it.feature} (${it.plan}): ${it.value}\n`;
+        if(it.detail) text += `      ${it.detail}\n`;
       });
       text += '\n';
     });
