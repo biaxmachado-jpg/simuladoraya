@@ -8,13 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #faf9f6;
-    --ink: #1c2b2a;
-    --muted: #6b7a82;
-    --teal: #1f6f66;
-    --teal-dark: #175a53;
-    --teal-soft: #e4f1ed;
-    --line: #e7e4dc;
+    --bg: #f7f9fb;
+    --ink: #17273b;
+    --muted: #62778c;
+    --teal: #1d5b96;
+    --teal-dark: #14456f;
+    --teal-soft: #e4edf8;
+    --line: #dfe6ee;
   }
   *{ box-sizing:border-box; }
   body{
@@ -67,7 +67,7 @@
   #tab-conteudo th.seg-head{ background:none; color: var(--teal); text-align:left; cursor:default; }
   #tab-conteudo th.content-head{ background:none; color: var(--teal); text-align:left; cursor:default; font-style:normal; }
   #tab-conteudo td.content-cell{
-    background: #fbfbf9; border: 1px solid var(--line); border-radius:10px;
+    background: #f6f9fc; border: 1px solid var(--line); border-radius:10px;
     padding: 12px 14px; font-size:11.5px; line-height:1.5; color: var(--ink);
     width: 300px; min-width: 300px; max-width: 300px;
     height: 150px; overflow-y: auto; vertical-align: top;
@@ -75,14 +75,14 @@
   #tab-conteudo .content-line{ margin-bottom:5px; }
   #tab-conteudo .content-line:last-child{ margin-bottom:0; }
   #tab-conteudo .content-line strong{ color: var(--teal); font-weight:700; }
-  #tab-conteudo th.plan-light{ background:#eeeeec; color:#4a4a48; }
-  #tab-conteudo th.plan-standard{ background:#c7d3da; color:#2c363c; }
-  #tab-conteudo th.plan-premium{ background:#55636b; color:#fff; }
+  #tab-conteudo th.plan-light{ background:#e9eef4; color:#3b4c5e; }
+  #tab-conteudo th.plan-standard{ background:#bfd0e0; color:#1f3a52; }
+  #tab-conteudo th.plan-premium{ background:#2f4d6e; color:#fff; }
   #tab-conteudo th.plan-jornais{ background:#cfe3f5; color:#20415c; }
 
   #tab-conteudo td{ padding:0; }
   #tab-conteudo td.seg-label{
-    background: var(--teal-soft); color:#1f3d33; font-style:italic; font-size:13px; font-weight:600;
+    background: var(--teal-soft); color:#1a3450; font-style:italic; font-size:13px; font-weight:600;
     padding: 11px 12px; border-radius:10px;
     width: 190px; min-width: 190px; max-width: 190px;
     height: 150px; display:flex; align-items:center; white-space:normal;
@@ -92,13 +92,13 @@
     cursor:pointer; transition: transform .06s ease, filter .15s ease;
   }
   #tab-conteudo .cell:active{ transform: scale(.96); }
-  #tab-conteudo .cell.light{ background:#f4f4f2; }
-  #tab-conteudo .cell.standard{ background:#dbe4e9; }
-  #tab-conteudo .cell.premium{ background:#e4e7e9; }
+  #tab-conteudo .cell.light{ background:#eef2f6; }
+  #tab-conteudo .cell.standard{ background:#d7e2ea; }
+  #tab-conteudo .cell.premium{ background:#dde5ec; }
   #tab-conteudo .cell.jornais{ background:#e6f0fa; }
-  #tab-conteudo .cell.checked.light{ background:#bfbfba; }
-  #tab-conteudo .cell.checked.standard{ background:#9fb0ba; }
-  #tab-conteudo .cell.checked.premium{ background:#3c464c; }
+  #tab-conteudo .cell.checked.light{ background:#a8bccd; }
+  #tab-conteudo .cell.checked.standard{ background:#7f9db4; }
+  #tab-conteudo .cell.checked.premium{ background:#2f4d6e; }
   #tab-conteudo .cell.checked.jornais{ background:#a9cceb; }
 
   #tab-conteudo .check-mark{
@@ -133,9 +133,9 @@
   #tab-conteudo .live-plan-group{ margin-bottom:10px; }
   #tab-conteudo .live-plan-group .plabel{ font-size:12px; font-weight:700; font-style:italic; margin-bottom:4px; }
   #tab-conteudo .live-plan-group ul{ margin:0; padding-left:16px; font-size:13px; line-height:1.55; }
-  #tab-conteudo .lbl-light{ color:#6a6a66; }
-  #tab-conteudo .lbl-standard{ color:#4b5c65; }
-  #tab-conteudo .lbl-premium{ color:#3c464c; }
+  #tab-conteudo .lbl-light{ color:#5b6c7c; }
+  #tab-conteudo .lbl-standard{ color:#3c5975; }
+  #tab-conteudo .lbl-premium{ color:#2f4d6e; }
   #tab-conteudo .lbl-jornais{ color:#20415c; }
 
   .save-offer-btn{
@@ -195,27 +195,27 @@
     padding:12px 10px; border-radius:10px;
   }
   #tab-protecao thead th:first-child{ background:none; }
-  #tab-protecao th.col-light{ background:#f1efe9; color: var(--ink); }
-  #tab-protecao th.col-standard{ background:#dfe4ea; color: var(--ink); }
-  #tab-protecao th.col-premium{ background:#26333f; color:#fff; }
+  #tab-protecao th.col-light{ background:#eef2f7; color: var(--ink); }
+  #tab-protecao th.col-standard{ background:#c9d8e6; color: var(--ink); }
+  #tab-protecao th.col-premium{ background:#1d3245; color:#fff; }
   #tab-protecao th.col-padrao{ background:#e4ecf7; color: var(--ink); }
 
   #tab-protecao tbody td{ padding:6px 10px; vertical-align:middle; }
   #tab-protecao .row-label{
-    background:#eef4ef; border-radius:10px; font-weight:700; font-size:13.5px; padding:16px 16px;
+    background:#e7eef7; border-radius:10px; font-weight:700; font-size:13.5px; padding:16px 16px;
     color: var(--ink); white-space:normal;
     width: 170px; min-width:170px; max-width:170px;
     height: 110px; display:flex; align-items:center;
   }
   #tab-protecao .pcell{
-    background:#f4f3ef; border-radius:10px; padding:12px 14px; display:flex; align-items:flex-start;
+    background:#eef2f7; border-radius:10px; padding:12px 14px; display:flex; align-items:flex-start;
     justify-content:space-between; gap:10px;
     width: 230px; min-width:230px; max-width:230px;
     height: 110px; overflow-y:auto;
   }
-  #tab-protecao .pcell.col-light{ background:#f1efe9; }
-  #tab-protecao .pcell.col-standard{ background:#dfe4ea; }
-  #tab-protecao .pcell.col-premium{ background:#34424f; color:#fff; }
+  #tab-protecao .pcell.col-light{ background:#eef2f7; }
+  #tab-protecao .pcell.col-standard{ background:#c9d8e6; }
+  #tab-protecao .pcell.col-premium{ background:#243c53; color:#fff; }
   #tab-protecao .pcell.col-padrao{ background:#e4ecf7; }
   #tab-protecao .pcell.disabled{ opacity:.45; }
   #tab-protecao .pcell-main{ display:flex; flex-direction:column; gap:4px; }
@@ -752,6 +752,12 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
       const cells = PLAN_COLS.map(col => {
         const val = row.values[col.key];
         const disabled = val === '-';
+
+        // Coluna "Ativar" só mostra a caixa quando o valor for "Sim"
+        if(col.key === 'padrao' && disabled){
+          return `<td></td>`;
+        }
+
         const id = `pchk-${ri}-${col.key}`;
         const detail = row.details && row.details[col.key];
         return `
