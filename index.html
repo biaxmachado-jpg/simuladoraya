@@ -145,6 +145,7 @@
   <button class="tab-btn" onclick="showTab('revistas')">Revistas 2027</button>
   <button class="tab-btn" onclick="showTab('livros')">Livros 2027</button>
   <button class="tab-btn" onclick="showTab('apostilas')">Apostilas 2027</button>
+  <button class="tab-btn" onclick="showTab('priceup')">Price Up 2027</button>
   <button class="tab-btn" onclick="showTab('catalogo')">Catálogo 2026</button>
   <button class="tab-btn" onclick="showTab('catalogotim')">Catálogo 2026 TIM</button>
   <button class="tab-btn" onclick="showTab('simulador')">Simulador</button>
@@ -320,9 +321,285 @@
 <div class="note">
   <strong>Observações:</strong> valor extraído exclusivamente da <strong>Coluna G</strong> ("APOSTILAS DETALHAMENTO") da planilha, que indica a quantidade de categorias de apostila por plano. Colunas H em diante (categoria, categoria e plano, valores de face etc.) não foram consideradas nesta tabela.
 </div>
+
 </div>
 
+<div id="tab-priceup" class="tab-panel">
+<h2 class="sub-heading">Categoria e Plano por Vertical (Colunas H e I)</h2>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Categoria</th>
+      <th>MENSAL 1</th><th>MENSAL 2</th><th>MENSAL 3</th><th>MENSAL 4</th><th>MENSAL 5</th>
+      <th>MENSAL 6</th><th>MENSAL 7</th><th>MENSAL 8</th><th>MENSAL 9</th><th>MENSAL 10</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Esportes</td><td>Light</td><td>Stand</td><td>Stand</td><td>Stand</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td></tr>
+    <tr><td>Wellness</td><td>Light</td><td>Stand</td><td>Stand</td><td>Stand</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td></tr>
+    <tr><td>Atualidades</td><td>Light</td><td>Stand</td><td>Stand</td><td>Stand</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td></tr>
+    <tr><td>Empreendedorismo</td><td class="dash">—</td><td class="dash">—</td><td>Light</td><td>Stand</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td></tr>
+    <tr><td>Automotivo</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td><td>Premium</td></tr>
+    <tr><td>Lifestyle</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td>Light</td><td>Stand</td><td>Premium</td><td>Premium</td><td>Premium</td></tr>
+    <tr><td>Ciência e Tecnologia</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td>Light</td><td>Stand</td><td>Premium</td></tr>
+    <tr><td>Entretenimento</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td>Light</td><td>Stand</td><td>Premium</td></tr>
+    <tr><td>Mundo Pop</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td>Stand</td><td>Premium</td></tr>
+    <tr><td>Kids</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td>Stand</td><td>Premium</td></tr>
+    <tr><td>Executivo</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td>Stand</td><td>Premium</td></tr>
+    <tr class="total-row">
+      <td>Jornais Ganhos (base: Simulador)</td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>EXTRA</li>
+          <li>Gazeta de S. Paulo</li>
+          <li>Folha de São Paulo (TIM)</li>
+          <li>O Povo (TIM + outros provedores)</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>EXTRA</li>
+          <li>Gazeta de S. Paulo</li>
+          <li>Folha de São Paulo (TIM)</li>
+          <li>O Povo (TIM + outros provedores)</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>EXTRA</li>
+          <li>Gazeta de S. Paulo</li>
+          <li>Folha de São Paulo (TIM)</li>
+          <li>O Povo (TIM + outros provedores)</li>
+          <li>Correio Braziliense</li>
+          <li>Estado de Minas</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>EXTRA</li>
+          <li>Gazeta de S. Paulo</li>
+          <li>Folha de São Paulo (TIM)</li>
+          <li>O Povo (TIM + outros provedores)</li>
+          <li>Correio Braziliense</li>
+          <li>Estado de Minas</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>EXTRA</li>
+          <li>Gazeta de S. Paulo</li>
+          <li>Folha de São Paulo (TIM)</li>
+          <li>O Povo (TIM + outros provedores)</li>
+          <li>Correio Braziliense</li>
+          <li>Estado de Minas</li>
+          <li>Estadão</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>EXTRA</li>
+          <li>Gazeta de S. Paulo</li>
+          <li>Folha de São Paulo (TIM)</li>
+          <li>O Povo (TIM + outros provedores)</li>
+          <li>Correio Braziliense</li>
+          <li>Estado de Minas</li>
+          <li>Estadão</li>
+          <li>O Globo</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>EXTRA</li>
+          <li>Gazeta de S. Paulo</li>
+          <li>Folha de São Paulo (TIM)</li>
+          <li>O Povo (TIM + outros provedores)</li>
+          <li>Correio Braziliense</li>
+          <li>Estado de Minas</li>
+          <li>Estadão</li>
+          <li>O Globo</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>EXTRA</li>
+          <li>Gazeta de S. Paulo</li>
+          <li>Folha de São Paulo (TIM)</li>
+          <li>O Povo (TIM + outros provedores)</li>
+          <li>Correio Braziliense</li>
+          <li>Estado de Minas</li>
+          <li>Estadão</li>
+          <li>O Globo</li>
+          <li>O Dia SP</li>
+          <li>Meia Hora</li>
+          <li>O Dia RJ</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>EXTRA</li>
+          <li>Gazeta de S. Paulo</li>
+          <li>Folha de São Paulo (TIM)</li>
+          <li>O Povo (TIM + outros provedores)</li>
+          <li>Correio Braziliense</li>
+          <li>Estado de Minas</li>
+          <li>Estadão</li>
+          <li>O Globo</li>
+          <li>O Dia SP</li>
+          <li>Meia Hora</li>
+          <li>O Dia RJ</li>
+          <li>Folha de Pernambuco</li>
+          <li>Correio do Estado</li>
+          <li>Jornal do Commercio</li>
+          <li>Valor Econômico (Premium)</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>EXTRA</li>
+          <li>Gazeta de S. Paulo</li>
+          <li>Folha de São Paulo (TIM)</li>
+          <li>O Povo (TIM + outros provedores)</li>
+          <li>Correio Braziliense</li>
+          <li>Estado de Minas</li>
+          <li>Estadão</li>
+          <li>O Globo</li>
+          <li>O Dia SP</li>
+          <li>Meia Hora</li>
+          <li>O Dia RJ</li>
+          <li>Folha de Pernambuco</li>
+          <li>Correio do Estado</li>
+          <li>Jornal do Commercio</li>
+          <li>Valor Econômico (Premium)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr class="total-row">
+      <td>Quantidade de Jornais</td>
+      <td>4</td><td>4</td><td>6</td><td>6</td><td>7</td><td>8</td><td>8</td><td>11</td><td>15</td><td>15</td>
+    </tr>
+    <tr class="total-row">
+      <td>Revistas Ganhas (base: Simulador)</td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Sports365</li><li>Sport Life</li>
+          <li>Boa Forma</li><li>Veja Saúde</li><li>Viva Saúde</li><li>Vida Longa e Saudável</li><li>Ciência em Foco</li><li>Vegetarianos (e outras)</li>
+          <li>Veja</li><li>Carta Capital</li><li>Manchete</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Sports365</li><li>Sport Life</li>
+          <li>Boa Forma</li><li>Veja Saúde</li><li>Viva Saúde</li><li>Vida Longa e Saudável</li><li>Ciência em Foco</li><li>Vegetarianos (e outras)</li>
+          <li>Veja</li><li>Carta Capital</li><li>Manchete</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Sports365</li><li>Sport Life</li>
+          <li>Boa Forma</li><li>Veja Saúde</li><li>Viva Saúde</li><li>Vida Longa e Saudável</li><li>Ciência em Foco</li><li>Vegetarianos (e outras)</li>
+          <li>Veja</li><li>Carta Capital</li><li>Manchete</li>
+          <li>Veja Negócios</li><li>Sim, Você Pode!</li><li>Tudo Sobre Informática</li><li>Revistas de Artesanato e DIY</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Sports365</li><li>Sport Life</li>
+          <li>Boa Forma</li><li>Veja Saúde</li><li>Viva Saúde</li><li>Vida Longa e Saudável</li><li>Ciência em Foco</li><li>Vegetarianos (e outras)</li>
+          <li>Veja</li><li>Carta Capital</li><li>Manchete</li>
+          <li>Veja Negócios</li><li>Sim, Você Pode!</li><li>Tudo Sobre Informática</li><li>Revistas de Artesanato e DIY</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Sports365</li><li>Sport Life</li>
+          <li>Boa Forma</li><li>Veja Saúde</li><li>Viva Saúde</li><li>Vida Longa e Saudável</li><li>Ciência em Foco</li><li>Vegetarianos (e outras)</li>
+          <li>Veja</li><li>Carta Capital</li><li>Manchete</li>
+          <li>Veja Negócios</li><li>Sim, Você Pode!</li><li>Tudo Sobre Informática</li><li>Revistas de Artesanato e DIY</li>
+          <li>AutoEsporte</li><li>Quatro Rodas</li><li>Cultura do Automóvel</li><li>Race1</li><li>Car Brasil</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Sports365</li><li>Sport Life</li>
+          <li>Boa Forma</li><li>Veja Saúde</li><li>Viva Saúde</li><li>Vida Longa e Saudável</li><li>Ciência em Foco</li><li>Vegetarianos (e outras)</li>
+          <li>Veja</li><li>Carta Capital</li><li>Manchete</li>
+          <li>Veja Negócios</li><li>Sim, Você Pode!</li><li>Tudo Sobre Informática</li><li>Revistas de Artesanato e DIY</li>
+          <li>AutoEsporte</li><li>Quatro Rodas</li><li>Cultura do Automóvel</li><li>Race1</li><li>Car Brasil</li>
+          <li>Vogue</li><li>Casa Vogue</li><li>Glamour</li><li>Capricho</li><li>Manequim</li><li>Revistas de decoração, viagem e astrologia</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Sports365</li><li>Sport Life</li>
+          <li>Boa Forma</li><li>Veja Saúde</li><li>Viva Saúde</li><li>Vida Longa e Saudável</li><li>Ciência em Foco</li><li>Vegetarianos (e outras)</li>
+          <li>Veja</li><li>Carta Capital</li><li>Manchete</li>
+          <li>Veja Negócios</li><li>Sim, Você Pode!</li><li>Tudo Sobre Informática</li><li>Revistas de Artesanato e DIY</li>
+          <li>AutoEsporte</li><li>Quatro Rodas</li><li>Cultura do Automóvel</li><li>Race1</li><li>Car Brasil</li>
+          <li>Vogue</li><li>Casa Vogue</li><li>Glamour</li><li>Capricho</li><li>Manequim</li><li>Revistas de decoração, viagem e astrologia</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Sports365</li><li>Sport Life</li>
+          <li>Boa Forma</li><li>Veja Saúde</li><li>Viva Saúde</li><li>Vida Longa e Saudável</li><li>Ciência em Foco</li><li>Vegetarianos (e outras)</li>
+          <li>Veja</li><li>Carta Capital</li><li>Manchete</li>
+          <li>Veja Negócios</li><li>Sim, Você Pode!</li><li>Tudo Sobre Informática</li><li>Revistas de Artesanato e DIY</li>
+          <li>AutoEsporte</li><li>Quatro Rodas</li><li>Cultura do Automóvel</li><li>Race1</li><li>Car Brasil</li>
+          <li>Vogue</li><li>Casa Vogue</li><li>Glamour</li><li>Capricho</li><li>Manequim</li><li>Revistas de decoração, viagem e astrologia</li>
+          <li>Superinteressante</li><li>Galileu</li><li>Mente Afiada</li><li>Segredos da Mente</li><li>A Verdade Sobre</li>
+          <li>Caras</li><li>Contigo</li><li>Guia da TV</li><li>Malu</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Sports365</li><li>Sport Life</li>
+          <li>Boa Forma</li><li>Veja Saúde</li><li>Viva Saúde</li><li>Vida Longa e Saudável</li><li>Ciência em Foco</li><li>Vegetarianos (e outras)</li>
+          <li>Veja</li><li>Carta Capital</li><li>Manchete</li>
+          <li>Veja Negócios</li><li>Sim, Você Pode!</li><li>Tudo Sobre Informática</li><li>Revistas de Artesanato e DIY</li>
+          <li>AutoEsporte</li><li>Quatro Rodas</li><li>Cultura do Automóvel</li><li>Race1</li><li>Car Brasil</li>
+          <li>Vogue</li><li>Casa Vogue</li><li>Glamour</li><li>Capricho</li><li>Manequim</li><li>Revistas de decoração, viagem e astrologia</li>
+          <li>Superinteressante</li><li>Galileu</li><li>Mente Afiada</li><li>Segredos da Mente</li><li>A Verdade Sobre</li>
+          <li>Caras</li><li>Contigo</li><li>Guia da TV</li><li>Malu</li>
+          <li>Almanaque21</li><li>PlayGames</li><li>Mega Drive Mania</li><li>Mundo dos Super Heróis (editora Europa)</li>
+          <li>Recreio</li><li>Universo Bebê e Criança</li><li>Piadas para Crianças</li>
+          <li>EXAME</li><li>Empresário Digital</li><li>LIDE</li><li>Le Monde Diplomatique</li><li>The Winners</li>
+        </ul>
+      </td>
+      <td style="white-space:normal; text-align:left; font-weight:400; font-size:11.5px; max-width:220px;">
+        <ul style="margin:0; padding-left:16px;">
+          <li>Sports365</li><li>Sport Life</li>
+          <li>Boa Forma</li><li>Veja Saúde</li><li>Viva Saúde</li><li>Vida Longa e Saudável</li><li>Ciência em Foco</li><li>Vegetarianos (e outras)</li>
+          <li>Veja</li><li>Carta Capital</li><li>Manchete</li>
+          <li>Veja Negócios</li><li>Sim, Você Pode!</li><li>Tudo Sobre Informática</li><li>Revistas de Artesanato e DIY</li>
+          <li>AutoEsporte</li><li>Quatro Rodas</li><li>Cultura do Automóvel</li><li>Race1</li><li>Car Brasil</li>
+          <li>Vogue</li><li>Casa Vogue</li><li>Glamour</li><li>Capricho</li><li>Manequim</li><li>Revistas de decoração, viagem e astrologia</li>
+          <li>Superinteressante</li><li>Galileu</li><li>Mente Afiada</li><li>Segredos da Mente</li><li>A Verdade Sobre</li>
+          <li>Caras</li><li>Contigo</li><li>Guia da TV</li><li>Malu</li>
+          <li>Almanaque21</li><li>PlayGames</li><li>Mega Drive Mania</li><li>Mundo dos Super Heróis (editora Europa)</li>
+          <li>Recreio</li><li>Universo Bebê e Criança</li><li>Piadas para Crianças</li>
+          <li>EXAME</li><li>Empresário Digital</li><li>LIDE</li><li>Le Monde Diplomatique</li><li>The Winners</li>
+        </ul>
+      </td>
+    </tr>
+    <tr class="total-row">
+      <td>Quantidade de Revistas</td>
+      <td>11</td><td>11</td><td>15</td><td>15</td><td>20</td><td>26</td><td>26</td><td>35</td><td>47</td><td>47</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="note">
+  <strong>Observações:</strong><br>
+  • Valores de nível (Light/Stand/Premium) extraídos das <strong>Colunas H ("categoria") e I ("categoria e plano")</strong> da planilha.<br>
+  • A linha <strong>"Jornais Ganhos"</strong> e a linha <strong>"Revistas Ganhas"</strong> vêm da aba <strong>Simulador</strong>: cada segmento (Esportes, Wellness, Atualidades, Empreendedorismo, Automotivo, Lifestyle, Ciência e Tecnologia, Entretenimento, Mundo Pop, Kids, Executivo) tem um jornal-base e revistas-base associados no objeto <code>segmentoConteudo</code> do simulador, independente do nível (Light/Stand/Premium). Para cada MENSAL, listei os jornais e revistas de todos os segmentos que já têm algum nível preenchido naquele plano — é cumulativo, pois cada plano superior mantém os segmentos anteriores.<br>
+  • Essa lista é a <u>curadoria do Simulador</u> (usada para fins de apresentação de oferta), e pode não coincidir 100% com a lista oficial da aba "Jornais 2027" (que vem da coluna PERIÓDICOS DETALHAMENTO da planilha) — por exemplo, o Simulador usa "Gazeta de S. Paulo" e "Folha de São Paulo" como jornais-base de Wellness/Atualidades, enquanto a base oficial usa "Gazeta" (provavelmente Gazeta de Ceará/regional) desde o MENSAL 1. Vale alinhar as duas fontes se forem usadas juntas comercialmente.
+</div>
+</div>
+
+
 <div id="tab-catalogo" class="tab-panel">
+
 <div class="note" style="margin-top:0; margin-bottom:12px;">
   Catálogo completo de jornais e revistas por plano (base: "conteúdo por plano" — jornais e revistas x planos disponíveis).
 </div>
